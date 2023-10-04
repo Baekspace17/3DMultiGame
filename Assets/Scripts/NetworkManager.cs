@@ -5,8 +5,7 @@ using UnityEngine;
 public class NetworkManager : MonoBehaviour
 {
     public static NetworkManager instance;
-    public bool isLoginDone;
-    public bool isgetValueDone;
+    
 
     void Awake()
     {
@@ -16,13 +15,6 @@ public class NetworkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isLoginDone)
-        {
-            if(!isgetValueDone)
-            {
-                GoogleSheetManager.instance.GetValue();
-                isgetValueDone = true;
-            }            
-        }
+        
     }
 }

@@ -23,7 +23,7 @@ public class GUIManager : MonoBehaviour
     public GameObject LoginUI;
     public GameObject NickNameUI;
 
-    public GameObject IngameUI;
+    public GameObject IngameUI;    
 
     public MenuState currentState;
     MenuState tempState = MenuState.Connect;
@@ -47,7 +47,7 @@ public class GUIManager : MonoBehaviour
         if (currentState != tempState)
         {
             SetMenu();
-        }
+        }        
     }
 
     void SetMenu()

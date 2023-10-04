@@ -21,6 +21,9 @@ public class GoogleSheetManager : MonoBehaviour
     TextMeshProUGUI LogText;
     public string id, pass, nickname;
 
+    public bool isLoginDone;
+    public bool isgetValueDone;
+
     void Awake()
     {
         instance = this;
@@ -29,6 +32,18 @@ public class GoogleSheetManager : MonoBehaviour
     void Start()
     {
         LogText = GUIManager.instance.LogText;
+    }
+
+    void Update()
+    {
+        if (isLoginDone)
+        {
+            if (!isgetValueDone)
+            {
+                GetValue();
+                isgetValueDone = true;
+            }
+        }
     }
 
     bool SetIDPass()
@@ -123,7 +138,7 @@ public class GoogleSheetManager : MonoBehaviour
 
         if (GD.order == "login")
         {
-            NetworkManager.instance.isLoginDone = true;
+            isLoginDone = true;
             LogText.text = "로그인 완료";
         }
 
@@ -134,7 +149,7 @@ public class GoogleSheetManager : MonoBehaviour
         // LogText.text = GD.order + "을 실행했습니다. 메시지 : " + GD.msg;
         if (GD.order == "setValue")
         {
-            NetworkManager.instance.isgetValueDone = false;
+            isgetValueDone = false;
         }
 
         if (GD.order == "getValue")
