@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static NetworkManager instance;
+    public bool isLoginDone;
+    public bool isgetValueDone;
+
+    void Awake()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isLoginDone)
+        {
+            if(!isgetValueDone)
+            {
+                GoogleSheetManager.instance.GetValue();
+                isgetValueDone = true;
+            }            
+        }
     }
 }
