@@ -53,5 +53,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("로비접속완료");
         GUIManager.instance.NickText.text = "'" + GoogleSheetManager.instance.nickname + "'님 환영 합니다.";
         GUIManager.instance.currentState = MenuState.Ingame;
+        GUIManager.instance.LogText.text = "로비접속완료";
     }
 }
