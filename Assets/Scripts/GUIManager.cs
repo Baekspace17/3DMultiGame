@@ -95,11 +95,13 @@ public class GUIManager : MonoBehaviour
 
     public void RegisterBtn()
     {
+        LogText.text = "회원가입 중";
         GoogleSheetManager.instance.Register();
     }
 
     public void NickNameBtn()
     {
+        LogText.text = "닉네임 생성중";
         GoogleSheetManager.instance.SetValue();
     }
 

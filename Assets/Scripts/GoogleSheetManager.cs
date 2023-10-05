@@ -15,7 +15,8 @@ public class GoogleSheetManager : MonoBehaviour
 {
     public static GoogleSheetManager instance;
     
-    const string URL = "https://script.google.com/macros/s/AKfycbwoXXnFtsa2q1n77RyLun-ycoyQOzvRuGDm3Ni3znZe_m2jF1mQx3qY8BztkwzADaejpg/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbx9ia2jfayYqV3AuqwrSWRk3DTYjI2Ugqhoy3LniwZdEby8S-vdonxv_6lFmjmWdwOaUw/exec";
+    
     public GoogleData GD;
     public TMP_InputField IDInput, PassInput, NickInput;
     TextMeshProUGUI LogText;
@@ -120,7 +121,9 @@ public class GoogleSheetManager : MonoBehaviour
 
             if (www.isDone) Response(www.downloadHandler.text);
             else LogText.text = "웹의 응답이 없습니다.";
+            www.Dispose();
         }
+        
     }
 
 
@@ -131,8 +134,8 @@ public class GoogleSheetManager : MonoBehaviour
         GD = JsonUtility.FromJson<GoogleData>(json);
 
         if (GD.result == "ERROR")
-        {
-            LogText.text = GD.order + "을 실행할 수 없습니다. 에러 메시지 : " + GD.msg;
+        {            
+            LogText.text = "에러 메시지 : " + GD.msg;
             return;
         }
 

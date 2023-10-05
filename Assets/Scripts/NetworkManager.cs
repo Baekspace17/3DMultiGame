@@ -12,12 +12,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Awake()
     {
         instance = this;
+        Screen.SetResolution(960, 540, false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(PhotonNetwork.CountOfPlayers);
     }
 
     public void Connect()
