@@ -120,10 +120,8 @@ public class GoogleSheetManager : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.isDone) Response(www.downloadHandler.text);
-            else LogText.text = "웹의 응답이 없습니다.";
-            www.Dispose();
-        }
-        
+            else LogText.text = "웹의 응답이 없습니다.";            
+        }        
     }
 
 
