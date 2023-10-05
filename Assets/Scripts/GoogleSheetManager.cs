@@ -162,9 +162,8 @@ public class GoogleSheetManager : MonoBehaviour
             else
             {                
                 nickname = GD.value;
-                LogText.text = "닉네임 : " + nickname;
-                GUIManager.instance.NickText.text = "'" + nickname + "'님 환영 합니다.";
-                GUIManager.instance.currentState = GUIManager.MenuState.Ingame;
+                LogText.text = "로비 참여중";
+                NetworkManager.instance.JoinLobby();
             }            
         }
     }

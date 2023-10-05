@@ -84,8 +84,7 @@ public class GUIManager : MonoBehaviour
 
     public void ConnectBtn()
     {
-        currentState = MenuState.Login;
-        LogText.text = "접속완료";
+        NetworkManager.instance.Connect();        
     }
 
     public void LoginBtn()
