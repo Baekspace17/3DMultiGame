@@ -13,6 +13,7 @@ public class GUIManager : MonoBehaviour
         Connect,
         Login,
         NickName,
+        LobbyConnect,
         Ingame
     };
 
@@ -22,11 +23,12 @@ public class GUIManager : MonoBehaviour
     public GameObject ConnectUI;
     public GameObject LoginUI;
     public GameObject NickNameUI;
-
-    public GameObject IngameUI;    
+    public GameObject LobbyUI;
+    public GameObject IngameUI;
 
     public MenuState currentState;
     MenuState tempState = MenuState.Connect;
+    float TimeSet = 0f;
 
     void Awake()
     {
@@ -47,7 +49,19 @@ public class GUIManager : MonoBehaviour
         if (currentState != tempState)
         {
             SetMenu();
-        }        
+        }      
+        
+        if (currentState == MenuState.LobbyConnect)
+        {
+            TimeSet -= Time.deltaTime;
+        }
+
+        if (TimeSet < 0f)
+        {
+            currentState = MenuState.Ingame;
+            GameManager.instance.inLobby = true;
+            TimeSet = 0f;
+        }
     }
 
     void SetMenu()
@@ -55,28 +69,46 @@ public class GUIManager : MonoBehaviour
         switch (currentState)
         {
             case MenuState.Connect:
+                MainUI.SetActive(true);
                 ConnectUI.SetActive(true);
                 LoginUI.SetActive(false);
                 NickNameUI.SetActive(false);
+                LobbyUI.SetActive(false);
                 IngameUI.SetActive(false);
                 break;
             case MenuState.Login:
+                MainUI.SetActive(true);
                 ConnectUI.SetActive(false);
                 LoginUI.SetActive(true);
                 NickNameUI.SetActive(false);
+                LobbyUI.SetActive(false);
                 IngameUI.SetActive(false);
                 break;
             case MenuState.NickName:
+                MainUI.SetActive(true);
                 ConnectUI.SetActive(false);
                 LoginUI.SetActive(false);
                 NickNameUI.SetActive(true);
+                LobbyUI.SetActive(false);
                 IngameUI.SetActive(false);
                 break;
-            case MenuState.Ingame:
+            case MenuState.LobbyConnect:
+                MainUI.SetActive(false);
                 ConnectUI.SetActive(false);
                 LoginUI.SetActive(false);
                 NickNameUI.SetActive(false);
+                LobbyUI.SetActive(true);
+                IngameUI.SetActive(false);
+                TimeSet = 5f;
+                break;
+            case MenuState.Ingame:
+                MainUI.SetActive(false);
+                ConnectUI.SetActive(false);
+                LoginUI.SetActive(false);
+                NickNameUI.SetActive(false);
+                LobbyUI.SetActive(false);
                 IngameUI.SetActive(true);
+                LogText.text = "";
                 break;
         }
         tempState = currentState;
